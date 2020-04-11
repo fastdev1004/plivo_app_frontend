@@ -23,6 +23,8 @@ Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
 ### Other Technologies:
 - ngrok: https://ngrok.com/
 
+## Setup Instructions
+
 After cloning both the front and backend repos, please follow the steps listed below to get the application up and running:
 1. Create Plivo trial account at https://www.plivo.com/ and follow the instructions after clicking the ***Get Started*** button.
 2.  From the terminal, navigate to the root directory of the backend repo and run the following command:
