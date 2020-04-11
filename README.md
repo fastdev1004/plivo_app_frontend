@@ -1,7 +1,7 @@
 # Plivo Messaging App
 This application usings Plivo's messaging APIs to send and receive text messages from a host web application.
 
-### Frontend
+## Frontend
 #### Repo: https://github.com/gwhitlock8/plivo_app_frontend
 ### Technologies:
 Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
@@ -12,7 +12,7 @@ Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
 - Axios: https://www.npmjs.com/package/axios
 - Plivo: https://www.npmjs.com/package/plivo
 
-### Backend
+## Backend
 #### Repo: https://github.com/gwhitlock8/plivo_app_backend
 ### Technologies:
 - Ruby on Rails: https://rubyonrails.org/
