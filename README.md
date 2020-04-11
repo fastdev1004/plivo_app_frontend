@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Plivo Messaging App
+This application usings Plivo's messaging APIs to send and receive text messages from a host web application.
 
-## Available Scripts
+### Frontend
+#### Repo: https://github.com/gwhitlock8/plivo_app_frontend
+### Technologies:
+Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
+- React: https://www.npmjs.com/package/react
+- React DOM: https://www.npmjs.com/package/react-dom
+- Boostrap React: https://www.npmjs.com/package/react-bootstrap
+- ActionCable: https://www.npmjs.com/package/actioncable
+- Axios: https://www.npmjs.com/package/axios
+- Plivo: https://www.npmjs.com/package/plivo
 
-In the project directory, you can run:
+### Backend
+#### Repo: https://github.com/gwhitlock8/plivo_app_backend
+### Technologies:
+- Ruby on Rails: https://rubyonrails.org/
+- Plivo: https://rubygems.org/gems/plivo
+- Active Model Serializers: https://rubygems.org/gems/active_model_serializers
+- Phonelib: https://rubygems.org/gems/phonelib
 
-### `yarn start`
+### Other Technologies:
+- ngrok: https://ngrok.com/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+After cloning both the front and backend repos, please follow the steps listed below to get the application up and running:
+1. Create Plivo trial account at https://www.plivo.com/ and follow the instructions after clicking the ***Get Started*** button.
+2. From the terminal, navigate to the root directory of the backend repo and type the following command:
+```
+EDITOR='code --wait' rails credentials:edit --environment=development
+```
+> This should open up the credentials file for your rails development environment in VS Code
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+3. Enter the **auth_id**, **auth_token**, and **phone number** from your Plivo account, following the formatting listed below:
+```
+plivo:
+  auth_id:
+  auth_token:
+  phone_number:
+```
+Save and close the file.
+4. In the terminal, type the following command:
+```ngrok http 3001```
+This will create a tunnel to your local host on port 3001. Grab the URL from the terminal (***sans http://***) and paste the following before the last ***end*** of your config/environments/development.rb file:
+```
+config.hosts << "[NGROK URL]"
+```
+5. Navigate to the Plivo dashboard and create a new XML application, linking it to your Plivo phone number. Within the application, paste the ngrok URL in the Message URL field, ensuring that POST is selected in the dropdown. The URL should look similar to this: ***http://c80bd249.ngrok.io/webhooks/plivo***
