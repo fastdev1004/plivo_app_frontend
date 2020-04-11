@@ -25,7 +25,11 @@ Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
 
 After cloning both the front and backend repos, please follow the steps listed below to get the application up and running:
 1. Create Plivo trial account at https://www.plivo.com/ and follow the instructions after clicking the ***Get Started*** button.
-2. From the terminal, navigate to the root directory of the backend repo and type the following command:
+2.  From the terminal, navigate to the root directory of the backend repo and run the following command:
+```
+bundle install
+```
+3. Still in the root folder of the backend repo, run the following command in the terminal:
 ```
 EDITOR='code --wait' rails credentials:edit --environment=development
 ```
@@ -46,3 +50,16 @@ This will create a tunnel to your local host on port 3001. Grab the URL from the
 config.hosts << "[NGROK URL]"
 ```
 5. Navigate to the Plivo dashboard and create a new XML application, linking it to your Plivo phone number. Within the application, paste the ngrok URL in the Message URL field, ensuring that POST is selected in the dropdown. The URL should look similar to this: ***http://c80bd249.ngrok.io/webhooks/plivo***
+
+6. Start your server by running the following in the root folder of the app backend:
+```
+rails s -p 3001
+```
+>The ***-p*** flag starts the server on port 3001
+
+7. Now navigate to the root folder of the frontend repo and run:
+```
+npm install
+npm run start
+```
+
