@@ -45,9 +45,9 @@ plivo:
   phone_number:
 ```
 Save and close the file.
-4. In the terminal, type the following command:
+4. In the terminal, type the following command (you will need to have **ngrok** [https://ngrok.com/] installed):
 ```ngrok http 3001```
-This will create a tunnel to your local host on port 3001. Grab the URL from the terminal (***sans http://***) and paste the following before the last ***end*** of your config/environments/development.rb file:
+This will create a tunnel to your local host on port 3001. Grab the URL from the terminal (***sans http://***) and paste the following before the last *end* of your config/environments/development.rb file:
 ```
 config.hosts << "[NGROK URL]"
 ```
@@ -57,7 +57,7 @@ config.hosts << "[NGROK URL]"
 ```
 rails s -p 3001
 ```
->The ***-p*** flag starts the server on port 3001
+>The *-p* flag starts the server on port 3001
 
 7. Now navigate to the root folder of the frontend repo and run:
 ```
