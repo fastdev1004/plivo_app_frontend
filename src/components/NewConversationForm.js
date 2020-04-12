@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button, Form } from "react-bootstrap";
 
 import { API_ROOT } from "../constants";
 
@@ -24,29 +25,37 @@ const NewConversationForm = () => {
   };
 
   return (
-    <div className="newConversationForm">
-      <form onSubmit={handleSubmit}>
-        <label>New Conversation Title:</label>
-        <br />
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>New Conversation Title:</Form.Label>
+        <Form.Control
           type="text"
           name="title"
           value={values.title}
           onChange={handleChange}
           placeholder="Convo Title"
         />
-        <br />
-        <input
-          type="tel"
-          name="phone"
-          value={values.phone}
-          onChange={handleChange}
-          placeholder="Phone Number"
-        />
-        <br />
-        <input type="submit" />
-      </form>
-    </div>
+        <Form.Text className="text-muted">
+          Best practice is to name this based on the person being messaged.
+        </Form.Text>
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>
+          <Form.Control
+            type="tel"
+            name="phone"
+            value={values.phone}
+            onChange={handleChange}
+            placeholder="Phone Number"
+          />
+          <Form.Text className="text-muted">
+            Please enter a country code (1 for the US) followed by a 10 digit
+            phone number.
+          </Form.Text>
+        </Form.Label>
+      </Form.Group>
+      <Button type="submit">Create Conversation</Button>
+    </Form>
   );
 };
 

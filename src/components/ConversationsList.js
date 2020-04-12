@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_ROOT } from "../constants";
+import { Container } from "react-bootstrap";
+
 import NewConversationForm from "./NewConversationForm";
 import MessagesArea from "./MessagesArea";
 import Cable from "./Cable";
@@ -64,7 +66,7 @@ const ConversationsList = (props) => {
   );
 
   return (
-    <div>
+    <Container>
       {conversations.length ? (
         <Cable
           cableApp={props.cableApp}
@@ -83,7 +85,7 @@ const ConversationsList = (props) => {
           )}
         />
       ) : null}
-    </div>
+    </Container>
   );
 };
 

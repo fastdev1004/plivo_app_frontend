@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { API_ROOT } from "../constants";
+import { Button, Form } from "react-bootstrap";
 import axios from "axios";
+
+import { API_ROOT } from "../constants";
 
 const NewMessageForm = (props) => {
   const [text, setText] = useState("");
@@ -26,14 +28,13 @@ const NewMessageForm = (props) => {
   };
 
   return (
-    <div className="newMessageForm">
-      <form onSubmit={handleSubmit}>
-        <label>New Message:</label>
-        <br />
-        <input type="text" value={text} onChange={handleChange} />
-        <input type="submit" />
-      </form>
-    </div>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>New Message:</Form.Label>
+        <Form.Control type="text" value={text} onChange={handleChange} />
+      </Form.Group>
+      <Button type="submit">Send Text</Button>
+    </Form>
   );
 };
 
