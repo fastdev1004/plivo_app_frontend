@@ -38,7 +38,7 @@ export PLIVO_AUTH_TOKEN=
 export PLIVO_PHONE_NUMBER=
 ```
 
-4. In the terminal, type the following command (you will need to have **ngrok** [https://ngrok.com/] installed):
+4. In the terminal, type the following command (you will need to have [ngrok](https://ngrok.com/download) installed):
 ```
 ngrok http 3001
 ```
