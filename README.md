@@ -31,20 +31,12 @@ After cloning both the front and backend repos, please follow the steps listed b
 ```
 bundle install
 ```
-3. Still in the root folder of the backend repo, run the following command in the terminal:
+3. Create a ***.env*** file in the backend root directory and enter the your Plivo variables, using the following format:
 ```
-EDITOR='code --wait' rails credentials:edit --environment=development
+export PLIVO_AUTH_ID=
+export PLIVO_AUTH_TOKEN=
+export PLIVO_PHONE_NUMBER=
 ```
-> This should open up the credentials file for your rails development environment in VS Code
-
-3. Enter the **auth_id**, **auth_token**, and **phone number** from your Plivo account, following the formatting listed below:
-```
-plivo:
-  auth_id:
-  auth_token:
-  phone_number:
-```
-Save and close the file.
 
 4. In the terminal, type the following command (you will need to have **ngrok** [https://ngrok.com/] installed):
 ```
