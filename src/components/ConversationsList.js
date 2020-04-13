@@ -14,8 +14,10 @@ const ConversationsList = (props) => {
 
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
+  // `?limit=10&${query}=${phone}`
+
   const handleConvoLogs = (query, phone) => {
-    fetch(proxyUrl + constants.PLIVO_API_URL + `?limit=10&${query}=${phone}`, {
+    fetch(proxyUrl + constants.PLIVO_API_URL, {
       headers: {
         Authorization: constants.PLIVO_BASIC_AUTH,
       },
@@ -25,8 +27,7 @@ const ConversationsList = (props) => {
   };
 
   useEffect(() => {
-    axios.get(`${constants.API_ROOT}/conversations`).then((response) => {
-      console.log("get convos", response);
+    axios.get(`${constants.API_ROOT}/conversations`).then((response) => {;
       setConversations(response.data);
     });
   }, []);
@@ -49,7 +50,6 @@ const ConversationsList = (props) => {
   };
 
   const handleReceivedMessage = (response) => {
-    console.log("received message", response);
     const { message } = response;
     const receivedConversations = [...conversations];
     const receivedConversation = receivedConversations.find(
@@ -61,7 +61,6 @@ const ConversationsList = (props) => {
 
   const mapConversations = (conversations, handleClick) =>
     conversations.map((conversation) => {
-      console.log("mapped convo", conversation);
       return (
         <tr key={conversation.id}>
           <td onClick={() => handleClick(conversation.id)}>
