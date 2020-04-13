@@ -48,8 +48,10 @@ config.hosts << "[NGROK URL]"
 ```
 5. Navigate to the Plivo dashboard and create a new XML application, linking it to your Plivo phone number. Within the application, paste the ngrok URL in the Message URL field, ensuring that POST is selected in the dropdown. The URL should look similar to this: ***http://c80bd249.ngrok.io/webhooks/plivo***
 
-6. Start your server by running the following in the root folder of the app backend:
+6. Create and migrate the database then start your server by running the following in the root folder of the app backend:
 ```
+rails db:create
+rails db:migrate
 rails s -p 3001
 ```
 >The *-p* flag starts the server on port 3001
