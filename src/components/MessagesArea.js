@@ -23,7 +23,7 @@ const orderedMessages = (messages) => {
   );
   return sortedMessages.map((message) => {
     return message.origin === "app" ? (
-      <Row>
+      <Row key={message.id}>
         <Col xs={{ span: 6, offset: 2 }} md={{ span: 6, offset: 2 }}>
           <Alert key={message.id} variant="dark">
             {message.text}
@@ -31,7 +31,7 @@ const orderedMessages = (messages) => {
         </Col>
       </Row>
     ) : (
-      <Row>
+      <Row key={message.id}>
         <Col xs={6} md={6}>
           <Alert key={message.id} variant="primary">
             {message.text}
