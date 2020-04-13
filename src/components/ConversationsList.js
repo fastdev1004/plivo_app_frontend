@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Table, Button, Modal, ButtonGroup } from "react-bootstrap";
+import { Container, Table, Button, Modal } from "react-bootstrap";
 import * as constants from "../constants";
 import NewConversationForm from "./NewConversationForm";
 import MessagesArea from "./MessagesArea";
@@ -11,13 +11,13 @@ const ConversationsList = (props) => {
   const [activeConversation, setActiveConversation] = useState(null);
   const [logs, setLogs] = useState([]);
   const [show, setShow] = useState(false);
+  const [showDeleteConvoAlert, setShowDeleteConvoAlert] = useState(false);
+  const [convoToDelete, setConvoToDelete] = useState("");
 
   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-  // `?limit=10&${query}=${phone}`
-
   const handleConvoLogs = (query, phone) => {
-    fetch(proxyUrl + constants.PLIVO_API_URL, {
+    fetch(proxyUrl + constants.PLIVO_API_URL + `?limit=10&${query}=${phone}`, {
       headers: {
         Authorization: constants.PLIVO_BASIC_AUTH,
       },
@@ -27,10 +27,10 @@ const ConversationsList = (props) => {
   };
 
   useEffect(() => {
-    axios.get(`${constants.API_ROOT}/conversations`).then((response) => {;
+    axios.get(`${constants.API_ROOT}/conversations`).then((response) => {
       setConversations(response.data);
     });
-  }, []);
+  }, [convoToDelete]);
 
   const handleModalClose = () => {
     setShow(false);
@@ -59,6 +59,14 @@ const ConversationsList = (props) => {
     setConversations(receivedConversations);
   };
 
+  const handleDeleteConvoAlert = () => {
+    setShowDeleteConvoAlert(true);
+  };
+
+  const handleConversationDelete = (convoId) => {
+    axios.delete(constants.API_ROOT + `/conversations/${convoId}`);
+  };
+
   const mapConversations = (conversations, handleClick) =>
     conversations.map((conversation) => {
       return (
@@ -71,7 +79,7 @@ const ConversationsList = (props) => {
           <td>
             <Button
               size="sm"
-              variant="danger"
+              variant="info"
               onClick={() => {
                 handleModalShow("from_number", conversation.phone);
               }}
@@ -86,6 +94,18 @@ const ConversationsList = (props) => {
               }}
             >
               Incoming
+            </Button>
+          </td>
+          <td>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => {
+                setConvoToDelete(conversation.id);
+                handleDeleteConvoAlert();
+              }}
+            >
+              Delete
             </Button>
           </td>
         </tr>
@@ -162,6 +182,37 @@ const ConversationsList = (props) => {
         <Modal.Footer>
           <Button variant="secondary" onClick={handleModalClose}>
             Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showDeleteConvoAlert}>
+        <Modal.Header>
+          <Modal.Title>Delete Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this conversation?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            size="sm"
+            variant="outline-danger"
+            onClick={() => {
+              handleConversationDelete(convoToDelete);
+              setShowDeleteConvoAlert(false);
+              setConvoToDelete("");
+            }}
+          >
+            Yes
+          </Button>
+          <Button
+            size="sm"
+            variant="outline-secondary"
+            onClick={() => {
+              setShowDeleteConvoAlert(false);
+              setConvoToDelete("");
+            }}
+          >
+            No
           </Button>
         </Modal.Footer>
       </Modal>
