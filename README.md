@@ -37,7 +37,7 @@ After cloning both the front and backend repos, please follow the steps listed b
 ```
 bundle install
 ```
-3. Create a ***.env*** file in the backend root directory and enter the your Plivo variables, using the following format:
+3. Create a ***.env*** file in the backend root directory and enter your Plivo variables, using the following format:
 ```
 export PLIVO_AUTH_ID=
 export PLIVO_AUTH_TOKEN=
