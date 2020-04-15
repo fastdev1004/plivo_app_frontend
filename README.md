@@ -30,6 +30,9 @@ Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
 
 After cloning both the front and backend repos, please follow the steps listed below to get the application up and running:
 1. Create Plivo trial account at https://www.plivo.com/ and follow the instructions after clicking the ***Get Started*** button.
+
+- You will need to buy a phone, create an XML application (_see step 5_) and link it to the number, and then _pre-register_ any numbers for which you wish to send text messages to
+
 2.  From the terminal, navigate to the root directory of the backend repo and run the following command:
 ```
 bundle install
