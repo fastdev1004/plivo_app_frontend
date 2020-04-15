@@ -20,6 +20,9 @@ Built using **create-react-app**: https://www.npmjs.com/package/create-react-app
 - Active Model Serializers: https://rubygems.org/gems/active_model_serializers
 - Phonelib: https://rubygems.org/gems/phonelib
 
+***Note***: Ruby version is 2.6.3 and Postgres version is 1.2.3
+
+
 ### Other Technologies:
 - ngrok: https://ngrok.com/
 
